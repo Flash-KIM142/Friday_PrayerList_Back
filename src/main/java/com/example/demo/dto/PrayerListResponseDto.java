@@ -8,6 +8,7 @@ import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
@@ -23,8 +24,8 @@ public class PrayerListResponseDto {
     private String content;
     private String simpleCreatedTime;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd | HH시 mm분 ss초")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd | HH시 mm분 ss초", timezone = "Asia/Seoul")
+    @DateTimeFormat(pattern = "yyyy년 MM월 dd일 HH시 mm분 ss초")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy년 MM월 dd일 HH시 mm분 ss초", timezone = "Asia/Seoul")
     private LocalDateTime createdTime;
 
 
@@ -58,8 +59,16 @@ public class PrayerListResponseDto {
     }
 
     public static String createSimpleCreatedTime(String createdTime){
-        StringTokenizer stk = new StringTokenizer(createdTime, "T");
-        return stk.nextToken();
+        StringTokenizer stk1 = new StringTokenizer(createdTime, "T");
+        String uncompletedSimpleCreatedTime = stk1.nextToken();
+
+        StringTokenizer stk2 = new StringTokenizer(uncompletedSimpleCreatedTime, "-");
+        StringBuilder sb = new StringBuilder();
+        sb.append(stk2.nextToken() + "년 ");
+        sb.append(stk2.nextToken() + "월 ");
+        sb.append(stk2.nextToken() + "일");
+
+        return sb.toString();
     }
 
 

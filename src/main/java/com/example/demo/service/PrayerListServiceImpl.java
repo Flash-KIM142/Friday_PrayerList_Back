@@ -75,6 +75,7 @@ public class PrayerListServiceImpl implements PrayerListService {
 
     /*
     3. id로 조회하기
+        수정할 때 사용하게 될 메소
      */
     @Override
     public PrayerList getPrayerListById(Long id){
