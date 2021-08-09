@@ -35,7 +35,7 @@ public class PrayerListController {
      */
     @GetMapping
     public ResponseEntity<BaseResponseDto> getPagedPrayerLists(
-            @PageableDefault(size=5) Pageable pageable){
+            @PageableDefault(size=4) Pageable pageable){
         return new ResponseEntity<>(new BaseResponseDto(HttpStatus.OK.value(), "paging success", prayerListService.getPagedPrayerLists(pageable)), HttpStatus.OK);
     }
 
@@ -64,6 +64,17 @@ public class PrayerListController {
         return new ResponseEntity<>(new BaseResponseDto(HttpStatus.OK.value(), "dateCollection success", prayerListService.getPrayerListsBetweenTwoDates(startDate, endDate)), HttpStatus.OK);
     }
 
+
+    @GetMapping(path="/thisWeek")
+    public ResponseEntity<BaseResponseDto> getPrayerListsOfThisWeek(){
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime firstDayOfWeek = today.minusDays(6);
+
+        System.out.println(today);
+        System.out.println(firstDayOfWeek);
+
+        return new ResponseEntity<>(new BaseResponseDto(HttpStatus.OK.value(), "dateCollection success", prayerListService.getPrayerListsBetweenTwoDates(firstDayOfWeek, today)), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<BaseResponseDto>  postPrayerList(@RequestBody PrayerListRequestDto prayerListRequestDto){

@@ -23,6 +23,7 @@ public class PrayerListResponseDto {
     private String name;
     private String content;
     private String simpleCreatedTime;
+    private String mmDDCreatedTime;
 
     @DateTimeFormat(pattern = "yyyy년 MM월 dd일 HH시 mm분 ss초")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy년 MM월 dd일 HH시 mm분 ss초", timezone = "Asia/Seoul")
@@ -36,6 +37,7 @@ public class PrayerListResponseDto {
         this.content = prayerList.getContent();
         this.createdTime = prayerList.getCreatedTime();
         this.simpleCreatedTime = createSimpleCreatedTime(prayerList.getCreatedTime().toString());
+        this.mmDDCreatedTime = createMMDDCreatedTime(prayerList.getCreatedTime().toString());
     }
 
 
@@ -47,6 +49,7 @@ public class PrayerListResponseDto {
                 .content(prayerList.getContent())
                 .createdTime(prayerList.getCreatedTime())
                 .simpleCreatedTime(createSimpleCreatedTime(prayerList.getCreatedTime().toString()))
+                .mmDDCreatedTime(createMMDDCreatedTime(prayerList.getCreatedTime().toString()))
                 .build();
     }
 
@@ -71,5 +74,21 @@ public class PrayerListResponseDto {
         return sb.toString();
     }
 
+    public static String createMMDDCreatedTime(String createdTime){
+        StringTokenizer stk1 = new StringTokenizer(createdTime, "T");
+        String uncompletedSimpleCreatedTime = stk1.nextToken();
+
+        StringTokenizer stk2 = new StringTokenizer(uncompletedSimpleCreatedTime, "-");
+        StringBuilder sb = new StringBuilder();
+
+        String year = stk2.nextToken();
+        String month = stk2.nextToken();
+        String date = stk2.nextToken();
+
+        sb.append(month + "월 ");
+        sb.append(date + "일");
+
+        return sb.toString();
+    }
 
 }
