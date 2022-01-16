@@ -1,6 +1,5 @@
 package com.example.demo.dto;
 
-
 import com.example.demo.domain.entity.PrayerList;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Builder
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PrayerListResponseDto {

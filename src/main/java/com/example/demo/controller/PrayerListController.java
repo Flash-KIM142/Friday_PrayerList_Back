@@ -20,18 +20,11 @@ import java.time.format.DateTimeFormatter;
 @RestController
 public class PrayerListController {
 
-
     private final PrayerListService prayerListService;
     // TODO : GET, POST, DELETE ,UPDATE
 
-    // paging 된 data 받아올 거니까 어차피 얘 더이상 안쓴다
-//    @GetMapping(path="/home")
-//    public ResponseEntity<BaseResponseDto> getPrayerLists(){
-//        return new ResponseEntity<>(new BaseResponseDto(HttpStatus.OK.value(),"okay",prayerListService.getPrayerLists()), HttpStatus.OK);
-//    }
-
     /*
-    Paging 된 PrayerLsts 를 보여준다
+    Paging 된 PrayerLists  전체를 보여준다
      */
     @GetMapping
     public ResponseEntity<BaseResponseDto> getPagedPrayerLists(

@@ -18,10 +18,10 @@ import java.util.List;
 
 public interface PrayerListRepository extends JpaRepository<PrayerList, Long>{
 
-    PrayerListResponseDto findAllById(String id);
+//    PrayerListResponseDto findAllById(String id);
 
     /*
-    1. Service 에서 getPrayerLists() 에 사용할 시간 내림차순 Logic
+    1. Service 에서 getPagedPrayerLists() 에 사용할 시간 내림차순 Logic
      */
     @Query("SELECT p FROM PrayerList p ORDER BY p.createdTime DESC")
     List<PrayerListResponseDto> findAllByCreatedTimeDesc();

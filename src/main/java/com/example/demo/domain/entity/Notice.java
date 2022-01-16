@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
-
 import javax.persistence.*;
 
 @Getter
@@ -14,8 +12,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="prayerlist")
-public class PrayerList {
+@Table(name="notice")
+public class Notice {
 
     @Id
     @Column
@@ -33,13 +31,13 @@ public class PrayerList {
     @CreationTimestamp
     private LocalDateTime createdTime;
 
-    public PrayerList(String name, String content, LocalDateTime createdTime){
+    public Notice(String name, String content, LocalDateTime createdTime){
         this.name = name;
         this.content = content;
         this.createdTime = createdTime;
     }
 
-    public PrayerList(String name, String content) {
+    public Notice(String name, String content) {
         this.name = name;
         this.content = content;
     }

@@ -65,7 +65,7 @@ public class PrayerListServiceImpl implements PrayerListService {
 //    }
 
 
-    /*
+    /**
     2(1). Paging 처리된 PrayerList 갖고오기
      */
     @Override
@@ -73,9 +73,9 @@ public class PrayerListServiceImpl implements PrayerListService {
         return prayerListRepository.findAllByCreatedTimeDesc(pageable);
     }
 
-    /*
+    /**
     3. id로 조회하기
-        수정할 때 사용하게 될 메소
+        수정할 때 사용하게 될 메소드
      */
     @Override
     public PrayerList getPrayerListById(Long id){
@@ -90,7 +90,7 @@ public class PrayerListServiceImpl implements PrayerListService {
         return target;
     }
 
-    /*
+    /**
     4. target 글 삭제하기
      */
     public boolean deletePrayerList(Long id){
@@ -136,7 +136,7 @@ public class PrayerListServiceImpl implements PrayerListService {
 //        }
 //        return prayerLists;
 
-    /*
+    /**
         해당 id 값이 존재하는지 확인해주는 메소드
      */
     @Override
